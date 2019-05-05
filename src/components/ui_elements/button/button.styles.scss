@@ -119,7 +119,7 @@ $secondary-colors: (
         @each $color-name, $color-value in $primary-colors {
             &.#{$color-name} {
                 background-color: #{$color-value};
-    
+
                 &:hover {
                     background-color: darken($color-value, 10%);
                 }
@@ -142,12 +142,27 @@ $secondary-colors: (
         @each $color-name, $color-value in $secondary-colors {
             &.#{$color-name} {
                 background-color: #{$color-value};
-    
+
                 &:hover {
                     background-color: darken($color-value, 10%);
                 }
             }
         }
+    }
+
+    /*
+        icon styles
+        @prop
+        icon: bool
+    */
+    .icon {
+        display: inline-block;
+        overflow: visible;
+        width: 1em;
+        height: 0.75em;
+        margin: 0 5px 0 0;
+        vertical-align: -0.08em;
+        font-size: inherit;
     }
 
     /*

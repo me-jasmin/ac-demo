@@ -9,7 +9,9 @@ import './button.styles.scss';
 /*
     @props
     round: bool
+    icon: string
     primary: bool
+    onClick: func
     noHover: bool
     children: node
     secondary: bool
@@ -22,6 +24,7 @@ import './button.styles.scss';
 export default class Button extends React.Component {
     static propTypes = {
         round: PropTypes.bool,
+        icon: PropTypes.string,
         primary: PropTypes.bool,
         onClick: PropTypes.func,
         noHover: PropTypes.bool,
@@ -35,6 +38,7 @@ export default class Button extends React.Component {
 
     static defaultProps = {
         size: null,
+        icon: null,
         shadow: null,
         round: false,
         primary: false,
@@ -72,10 +76,11 @@ export default class Button extends React.Component {
     };
 
     render() {
-        const { children, onClick } = this.props;
+        const { children, onClick, icon } = this.props;
 
         return (
             <a href="/" className={this.cssClasses()} onClick={onClick}>
+                {icon && <img src={icon} className="icon" alt="icon" />}
                 {children}
             </a>
         );
