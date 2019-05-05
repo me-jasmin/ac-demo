@@ -1,2 +1,60 @@
 // import scss variables from camp-css package
 @import '~camp-css/scss/variables/_colors.scss';
+
+/*
+    Input component styles
+    @component: ./Input.js
+*/
+
+.input {
+    // default styles
+    padding: 10px 20px;
+    font-size: 16px;
+    color: $slate-120;
+    text-decoration: none;
+    box-sizing: border-box;
+    background-color: $white;
+
+    /*
+        shadow styles
+        @prop
+        shadow: 'inset' || 'outset' || 'both'
+    */
+    &.shadow {
+        &.inset {
+            box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        &.outset {
+            box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        &.both {
+            box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5), inset 0 0 5px 0 rgba(0, 0, 0, 0.5);
+        }
+    }
+
+    /*
+        round corners styles
+        @prop
+        round: bool
+    */
+    &.round {
+        border-radius: 10px;
+    }
+
+    /*
+        size styles
+        @prop
+        size: 'small' || 'large'
+    */
+    &.small {
+        padding: 5px 15px;
+        font-size: 12px;
+    }
+
+    &.large {
+        padding: 15px 25px;
+        font-size: 18px;
+    }
+}
