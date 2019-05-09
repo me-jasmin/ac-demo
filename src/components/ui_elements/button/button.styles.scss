@@ -1,31 +1,7 @@
 // import scss variables from camp-css package
 @import '~camp-css/scss/variables/_colors.scss';
-
-// color arrays from scss/variables/_colors.scss
-
-$default-colors: (
-    v-120: $slate-120,
-    v-80: $slate-80,
-    v-60: $slate-60,
-    v-40: $slate-40,
-    v-20: $slate-20,
-);
-
-$primary-colors: (
-    v-120: $ocean-120,
-    v-80: $ocean-80,
-    v-60: $ocean-60,
-    v-40: $ocean-40,
-    v-20: $ocean-20,
-);
-
-$secondary-colors: (
-    v-120: $mint-120,
-    v-80: $mint-80,
-    v-60: $mint-60,
-    v-40: $mint-40,
-    v-20: $mint-20,
-);
+// import my scss variables
+@import '../../../shared/variables.scss';
 
 /*
     Button component styles
@@ -34,12 +10,11 @@ $secondary-colors: (
 
 .button {
     // default styles
-    padding: 10px 20px;
-    font-size: 16px;
+    display: inline-block;
+    box-sizing: border-box;
+    @include normal;
     color: #ffffff;
     text-decoration: none;
-    box-sizing: border-box;
-    display: inline-block;
     background-color: $slate;
 
     /*
@@ -68,15 +43,15 @@ $secondary-colors: (
     */
     &.shadow {
         &.inset {
-            box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: $shadow-inset;
         }
 
         &.outset {
-            box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: $shadow;
         }
 
         &.both {
-            box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5), inset 0 0 5px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: $shadow, $shadow-inset;
         }
     }
 
@@ -86,7 +61,7 @@ $secondary-colors: (
         round: bool
     */
     &.round {
-        border-radius: 10px;
+        border-radius: $border-radius;
     }
 
     /*
@@ -97,9 +72,11 @@ $secondary-colors: (
     @each $color-name, $color-value in $default-colors {
         &.#{$color-name} {
             background-color: #{$color-value};
+            border: 1px solid #{$color-value};
 
             &:hover {
                 background-color: darken($color-value, 10%);
+                border: darken($color-value, 10%);
             }
         }
     }
@@ -110,21 +87,7 @@ $secondary-colors: (
         primary: bool
     */
     &.primary {
-        background-color: $ocean;
-
-        &:hover {
-            background-color: darken($ocean, 10%);
-        }
-
-        @each $color-name, $color-value in $primary-colors {
-            &.#{$color-name} {
-                background-color: #{$color-value};
-
-                &:hover {
-                    background-color: darken($color-value, 10%);
-                }
-            }
-        }
+        @include generate-main-color($ocean, $primary-colors);
     }
 
     /*
@@ -133,21 +96,7 @@ $secondary-colors: (
         secondary: bool
     */
     &.secondary {
-        background-color: $mint;
-
-        &:hover {
-            background-color: darken($mint, 10%);
-        }
-
-        @each $color-name, $color-value in $secondary-colors {
-            &.#{$color-name} {
-                background-color: #{$color-value};
-
-                &:hover {
-                    background-color: darken($color-value, 10%);
-                }
-            }
-        }
+        @include generate-main-color($mint, $secondary-colors);
     }
 
     /*
@@ -171,12 +120,10 @@ $secondary-colors: (
         size: 'small' || 'large'
     */
     &.small {
-        padding: 5px 15px;
-        font-size: 12px;
+        @include small;
     }
 
     &.large {
-        padding: 15px 25px;
-        font-size: 18px;
+        @include large;
     }
 }

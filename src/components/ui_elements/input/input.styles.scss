@@ -1,5 +1,7 @@
 // import scss variables from camp-css package
 @import '~camp-css/scss/variables/_colors.scss';
+// import my scss variables
+@import '../../../shared/variables.scss';
 
 /*
     Input component styles
@@ -9,29 +11,71 @@
 .input {
     // default styles
     display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    color: $slate-120;
-    text-decoration: none;
     box-sizing: border-box;
+    @include normal;
+    color: $slate-60;
+    text-decoration: none;
+    border: 1px solid rgba($slate-60, 0.2);
     background-color: $white;
+
+    /*
+        animation styles if not disabled
+        @prop
+        noAnimation: bool
+    */
+    &:not(.noAnimation) {
+        will-change: color, box-shadow, border;
+        transition: color 0.3s, box-shadow 0.3s, border 0.3s;
+    }
+
+    /*
+        placeholder styles
+    */
+    &::placeholder {
+        color: rgba($slate-60, 0.3);
+    }
+
+    /*
+        focus styles
+    */
+    &:focus {
+        outline: none;
+        border: 1px solid $base-color;
+
+        &::placeholder {
+            color: rgba($slate-60, 0.5);
+        }
+    }
 
     /*
         shadow styles
         @prop
         shadow: 'inset' || 'outset' || 'both'
     */
+
     &.shadow {
         &.inset {
-            box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: $shadow-inset;
+
+            &:focus {
+                box-shadow: $shadow-inset;
+            }
         }
 
         &.outset {
-            box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: $shadow;
+
+            &:focus {
+                box-shadow: $shadow-focus;
+            }
         }
 
         &.both {
-            box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5), inset 0 0 5px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: $shadow, $shadow-inset;
+
+            &:focus {
+                box-shadow: $shadow-focus, $shadow-inset;
+            }
         }
     }
 
@@ -41,7 +85,7 @@
         round: bool
     */
     &.round {
-        border-radius: 10px;
+        border-radius: $border-radius;
     }
 
     /*
@@ -50,12 +94,10 @@
         size: 'small' || 'large'
     */
     &.small {
-        padding: 5px 15px;
-        font-size: 12px;
+        @include small;
     }
 
     &.large {
-        padding: 15px 25px;
-        font-size: 18px;
+        @include large;
     }
 }

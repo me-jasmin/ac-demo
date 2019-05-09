@@ -1,0 +1,82 @@
+// font import
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans');
+
+// global variables
+$base-color: $mint;
+
+// round borders
+$border-radius: 4px;
+
+// shadows
+$shadow-color: $slate-80;
+$shadow: 0 5px 10px 0 rgba($shadow-color, 0.1);
+$shadow-focus: 0 5px 10px 0 rgba($base-color, 0.3);
+$shadow-inset: inset 0 2px 1px 2px rgba($shadow-color, 0.03);
+
+//sizes
+@mixin small {
+    padding: 5px 15px;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+@mixin normal {
+    padding: 10px 15px;
+    font-size: 16px;
+    line-height: 18px;
+}
+
+@mixin large {
+    padding: 15px 25px;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+// color arrays from scss/variables/_colors.scss
+
+$default-colors: (
+    v-120: $slate-120,
+    v-80: $slate-80,
+    v-60: $slate-60,
+    v-40: $slate-40,
+    v-20: $slate-20,
+);
+
+$primary-colors: (
+    v-120: $ocean-120,
+    v-80: $ocean-80,
+    v-60: $ocean-60,
+    v-40: $ocean-40,
+    v-20: $ocean-20,
+);
+
+$secondary-colors: (
+    v-120: $mint-120,
+    v-80: $mint-80,
+    v-60: $mint-60,
+    v-40: $mint-40,
+    v-20: $mint-20,
+);
+
+// generate main button colors
+@mixin generate-main-color($name, $from-list) {
+    background-color: $name;
+    border: 1px solid $name;
+
+    &:hover {
+        background-color: darken($name, 10%);
+        border: 1px solid darken($name, 10%);
+    }
+
+    @each $color-name, $color-value in $from-list {
+        &.#{$color-name} {
+            background-color: #{$color-value};
+            border: 1px solid #{$color-value};
+
+            &:hover {
+                background-color: darken($color-value, 10%);
+                border: 1px solid darken($color-value, 10%);
+            }
+        }
+    }
+}
