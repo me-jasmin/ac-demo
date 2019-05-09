@@ -13,7 +13,7 @@ import './input.styles.scss';
     onFocus: func
     onChange: func
     noAnimation: bool
-    size: 'small' || 'large'
+    size: 'small' || 'normal' || 'large'
     shadow: 'inset' || 'outset' || 'both'
 */
 
@@ -24,7 +24,7 @@ export default class Input extends React.Component {
         onFocus: PropTypes.func,
         onChange: PropTypes.func,
         noAnimation: PropTypes.bool,
-        size: PropTypes.oneOf(['small', 'large']),
+        size: PropTypes.oneOf(['small', 'normal', 'large']),
         shadow: PropTypes.oneOf(['inset', 'outset', 'both']),
     };
 

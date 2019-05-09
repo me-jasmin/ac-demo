@@ -17,7 +17,7 @@ import './button.styles.scss';
     secondary: bool
     noAnimation: bool
     colorVariant: number
-    size: 'small' || 'large'
+    size: 'small' || 'normal' || 'large'
     shadow: 'inset' || 'outset' || 'both'
 */
 
@@ -32,7 +32,7 @@ export default class Button extends React.Component {
         secondary: PropTypes.bool,
         noAnimation: PropTypes.bool,
         colorVariant: PropTypes.number,
-        size: PropTypes.oneOf(['small', 'large']),
+        size: PropTypes.oneOf(['small', 'normal', 'large']),
         shadow: PropTypes.oneOf(['inset', 'outset', 'both']),
     };
 
