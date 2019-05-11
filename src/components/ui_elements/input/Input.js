@@ -18,6 +18,7 @@ import './input.styles.scss';
 */
 
 export default class Input extends React.Component {
+    // prop types
     static propTypes = {
         round: PropTypes.bool,
         onBlur: PropTypes.func,
@@ -25,9 +26,10 @@ export default class Input extends React.Component {
         onChange: PropTypes.func,
         noAnimation: PropTypes.bool,
         size: PropTypes.oneOf(['small', 'normal', 'large']),
-        shadow: PropTypes.oneOf(['inset', 'outset', 'both']),
+        shadow: PropTypes.oneOf([false, 'inset', 'outset', 'both']),
     };
 
+    // default prop types
     static defaultProps = {
         size: 'normal',
         shadow: false,
@@ -50,6 +52,7 @@ export default class Input extends React.Component {
         );
     };
 
+    // filter out native HTML attributes from custom props
     getHTMLattrs = () => {
         const cleanHTMLattrs = { ...this.props };
         const customProps = [

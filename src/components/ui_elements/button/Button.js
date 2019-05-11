@@ -24,6 +24,7 @@ import iconMock from '../../../shared/images/icon.svg';
 */
 
 export default class Button extends React.Component {
+    // prop types
     static propTypes = {
         round: PropTypes.bool,
         icon: PropTypes.bool,
@@ -33,25 +34,27 @@ export default class Button extends React.Component {
         children: PropTypes.node,
         secondary: PropTypes.bool,
         noAnimation: PropTypes.bool,
-        colorVariant: PropTypes.number,
         size: PropTypes.oneOf(['small', 'normal', 'large']),
-        shadow: PropTypes.oneOf(['inset', 'outset', 'both']),
+        shadow: PropTypes.oneOf([false, 'inset', 'outset', 'both']),
+        colorVariant: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
     };
 
+    // default prop types
     static defaultProps = {
         size: 'normal',
         icon: false,
         round: false,
         onClick: null,
+        shadow: false,
         primary: false,
         noHover: false,
         secondary: false,
         noAnimation: false,
         colorVariant: false,
         children: 'Please add button text',
-        shadow: PropTypes.oneOf(['inset', 'outset', 'both']),
     };
 
+    // build out css classes
     cssClasses = () => {
         const {
             size,
@@ -77,11 +80,34 @@ export default class Button extends React.Component {
         );
     };
 
+    // filter out native HTML attributes from custom props
+    getHTMLattrs = () => {
+        const cleanHTMLattrs = { ...this.props };
+        const customProps = [
+            'icon',
+            'size',
+            'round',
+            'shadow',
+            'onClick',
+            'primary',
+            'noHover',
+            'secondary',
+            'noAnimation',
+            'colorVariant',
+        ];
+
+        customProps.forEach(customProp => {
+            if (cleanHTMLattrs.hasOwnProperty(customProp)) delete cleanHTMLattrs[customProp];
+        });
+
+        return cleanHTMLattrs;
+    };
+
     render() {
         const { children, onClick, icon } = this.props;
 
         return (
-            <a href="/" className={this.cssClasses()} onClick={onClick}>
+            <a href="/" onClick={onClick} {...this.getHTMLattrs()} className={this.cssClasses()}>
                 {icon && <img src={iconMock} className="icon" alt="icon" />}
                 {children}
             </a>
