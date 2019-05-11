@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // context
-import GlobalContext from '../../context/GlobalContext';
+import GlobalContext from '../../context/';
 // styles
 import './propsControls.styles.scss';
 
@@ -81,8 +81,13 @@ export default class PropsControls extends React.Component {
             });
 
             return (
-                <div className="prop-group g-col-12 s--g-col-6 m--g-col-4 p-4" key={`${usedFor}-${i}`}>
-                    <h3 className="prop-group-title">{`${prop}: ${contextState[usedFor][prop]}`}</h3>
+                <div
+                    className="prop-group g-col-12 s--g-col-6 m--g-col-4 p-4"
+                    key={`${usedFor}-${i}`}
+                >
+                    <h3 className="prop-group-title">{`${prop}: ${
+                        contextState[usedFor][prop]
+                    }`}</h3>
                     {propGroup}
                 </div>
             );

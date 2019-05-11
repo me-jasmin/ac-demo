@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 // helpers
-import { getPairKeyValue } from '../../../shared/helpers';
+import { getPairKeyValue, getHTMLattrs } from '../../../shared/helpers';
 // styles
 import './button.styles.scss';
 // mockup image used as an icon
@@ -81,33 +81,30 @@ export default class Button extends React.Component {
     };
 
     // filter out native HTML attributes from custom props
-    getHTMLattrs = () => {
-        const cleanHTMLattrs = { ...this.props };
-        const customProps = [
-            'icon',
-            'size',
-            'round',
-            'shadow',
-            'onClick',
-            'primary',
-            'noHover',
-            'secondary',
-            'noAnimation',
-            'colorVariant',
-        ];
-
-        customProps.forEach(customProp => {
-            if (cleanHTMLattrs.hasOwnProperty(customProp)) delete cleanHTMLattrs[customProp];
-        });
-
-        return cleanHTMLattrs;
-    };
+    // used with getHTMLattrs
+    customProps = [
+        'icon',
+        'size',
+        'round',
+        'shadow',
+        'onClick',
+        'primary',
+        'noHover',
+        'secondary',
+        'noAnimation',
+        'colorVariant',
+    ];
 
     render() {
         const { children, onClick, icon } = this.props;
 
         return (
-            <a href="/" onClick={onClick} {...this.getHTMLattrs()} className={this.cssClasses()}>
+            <a
+                href="/"
+                onClick={onClick}
+                {...getHTMLattrs(this.customProps, this.props)}
+                className={this.cssClasses()}
+            >
                 {icon && <img src={iconMock} className="icon" alt="icon" />}
                 {children}
             </a>

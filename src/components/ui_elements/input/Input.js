@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 // helpers
-import { getPairKeyValue } from '../../../shared/helpers';
+import { getPairKeyValue, getHTMLattrs } from '../../../shared/helpers';
 // styles
 import './input.styles.scss';
 
@@ -53,24 +53,16 @@ export default class Input extends React.Component {
     };
 
     // filter out native HTML attributes from custom props
-    getHTMLattrs = () => {
-        const cleanHTMLattrs = { ...this.props };
-        const customProps = [
-            'size',
-            'round',
-            'onBlur',
-            'shadow',
-            'onFocus',
-            'onChange',
-            'noAnimation',
-        ];
-
-        customProps.forEach(customProp => {
-            if (cleanHTMLattrs.hasOwnProperty(customProp)) delete cleanHTMLattrs[customProp];
-        });
-
-        return cleanHTMLattrs;
-    };
+    // used with getHTMLattrs
+    customProps = [
+        'size',
+        'round',
+        'onBlur',
+        'shadow',
+        'onFocus',
+        'onChange',
+        'noAnimation',
+    ];
 
     render() {
         const { onChange, onFocus, onBlur } = this.props;
@@ -80,7 +72,7 @@ export default class Input extends React.Component {
                 onBlur={onBlur}
                 onFocus={onFocus}
                 onChange={onChange}
-                {...this.getHTMLattrs()}
+                {...getHTMLattrs(this.customProps, this.props)}
                 className={this.cssClasses()}
             />
         );
