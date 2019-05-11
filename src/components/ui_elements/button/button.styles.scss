@@ -16,6 +16,7 @@
     color: #ffffff;
     text-decoration: none;
     background-color: $slate;
+    border: 1px solid $slate;
 
     /*
         hover styles if not disabled
@@ -24,6 +25,7 @@
     */
     &:not(.noHover):hover {
         background-color: darken($slate, 10%);
+        border: 1px solid darken($slate, 10%);
     }
 
     /*
@@ -76,7 +78,7 @@
 
             &:hover {
                 background-color: darken($color-value, 10%);
-                border: darken($color-value, 10%);
+                border: 1px solid darken($color-value, 10%);
             }
         }
     }
