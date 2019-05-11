@@ -14,19 +14,19 @@ export default class UI extends React.Component {
         button: {
             icon: false,
             round: false,
+            shadow: false,
             primary: false,
             size: 'normal',
             text: 'Button',
             noHover: false,
             secondary: false,
-            shadow: 'outset',
-            colorVariant: 100,
+            colorVariant: false,
             noAnimation: false,
         },
         input: {
-            size: 'normal',
-            shadow: 'outset',
             round: false,
+            shadow: false,
+            size: 'normal',
             noAnimation: false,
             placeholder: 'placeholder',
         },
@@ -39,7 +39,7 @@ export default class UI extends React.Component {
         // element
         const el = event.target;
         // logging :)
-        console.log('%c Button clicked!  %s', consoleCss('#139879'), el);
+        console.log('%c Button clicked! %s', consoleCss('#139879'), el);
     };
 
     // test function to handle input
@@ -51,13 +51,13 @@ export default class UI extends React.Component {
         // logging :)
         switch (event.type) {
             case 'focus':
-                console.log('%c Input focus!  %s', consoleCss('#5884ea'), el);
+                console.log('%c Input focus! %s', consoleCss('#ff8730'), el);
                 break;
             case 'blur':
-                console.log('%c Input blur!  %s', consoleCss('#5884ea'), el);
+                console.log('%c Input blur! %s', consoleCss('#9159fc'), el);
                 break;
             case 'change':
-                console.log(`%c Input change! value: ${el.value}  %s`, consoleCss('#5884ea'), el);
+                console.log(`%c Input change! value: ${el.value} %s`, consoleCss('#f3376b'), el);
                 break;
             default:
                 break;
@@ -75,40 +75,45 @@ export default class UI extends React.Component {
 
     render() {
         const { button, input } = this.state;
-        //console.log(this.state);
 
         return (
             <GlobalContext.Provider value={{ button, input, chanageProps: this.chanageProps }}>
-                <h1>AC UI demo</h1>
-                <div style={{ padding: '40px' }}>
-                    <Input
-                        size={input.size}
-                        round={input.round}
-                        shadow={input.shadow}
-                        onBlur={this.handleInput}
-                        onFocus={this.handleInput}
-                        onChange={this.handleInput}
-                        placeholder={input.placeholder}
-                        noAnimation={input.noAnimation}
-                    />
-                    <PropsControls usedFor="input">INPUT</PropsControls>
-                </div>
-                <div style={{ padding: '40px' }}>
-                    <Button
-                        size={button.size}
-                        icon={button.icon}
-                        round={button.round}
-                        shadow={button.shadow}
-                        primary={button.primary}
-                        noHover={button.noHover}
-                        onClick={this.handleButton}
-                        secondary={button.secondary}
-                        noAnimation={button.noAnimation}
-                        colorVariant={button.colorVariant}
-                    >
-                        {button.text}
-                    </Button>
-                    <PropsControls usedFor="button">BUTTON</PropsControls>
+                <div id="demo-container">
+                    <h1>AC UI demo</h1>
+                    <div className="demo-row clearfix">
+                        <div className="component-wrapper">
+                            <Input
+                                size={input.size}
+                                round={input.round}
+                                shadow={input.shadow}
+                                onBlur={this.handleInput}
+                                onFocus={this.handleInput}
+                                onChange={this.handleInput}
+                                placeholder={input.placeholder}
+                                noAnimation={input.noAnimation}
+                            />
+                        </div>
+                        <PropsControls usedFor="input" />
+                    </div>
+                    <div className="demo-row clearfix">
+                        <div className="component-wrapper">
+                            <Button
+                                size={button.size}
+                                icon={button.icon}
+                                round={button.round}
+                                shadow={button.shadow}
+                                primary={button.primary}
+                                noHover={button.noHover}
+                                onClick={this.handleButton}
+                                secondary={button.secondary}
+                                noAnimation={button.noAnimation}
+                                colorVariant={button.colorVariant}
+                            >
+                                {button.text}
+                            </Button>
+                        </div>
+                        <PropsControls usedFor="button" />
+                    </div>
                 </div>
             </GlobalContext.Provider>
         );

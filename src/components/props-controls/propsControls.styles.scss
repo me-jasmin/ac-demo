@@ -1,0 +1,62 @@
+// import scss variables from camp-css package
+@import '~camp-css/scss/variables/_colors.scss';
+// import my scss variables
+@import '../../shared/variables.scss';
+
+/*
+    PropsControls component styles (used just for the demo)
+    @component: ./PropsControls.js
+*/
+
+#demo-container {
+    padding: 40px;
+
+    h1 {
+        color: $slate-120;
+        margin: 0 0 50px;
+    }
+
+    .demo-row {
+        width: 100%;
+        max-width: 1024px;
+        margin: 0 0 30px;
+
+        .component-wrapper {
+            min-height: 55px;
+        }
+
+        .props-container {
+            background-color: #f4f4f4;
+            padding: 20px;
+
+            .prop-group {
+                .prop-radio-label {
+                    display: block;
+                    float: left;
+                    width: 50%;
+                    padding: 0 0 10px;
+                    font-size: 14px;
+                    color: $slate-60;
+                    line-height: 18px;
+                    font-weight: 300;
+
+                    .prop-radio-input {
+                        display: inline-block;
+                        margin: 0 10px 0 0;
+                        width: 20px;
+                        height: 20px;
+                        vertical-align: text-bottom;
+                    }
+                }
+
+                .prop-group-title {
+                    color: $slate-80;
+                    font-size: 18px;
+                    border-bottom: 1px solid $slate-40;
+                    margin: 0 0 20px;
+                    padding: 0 0 10px;
+                }
+            }
+        }
+    }
+}
