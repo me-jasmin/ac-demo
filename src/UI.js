@@ -1,19 +1,20 @@
 import React from 'react';
 // import custom components
 import { Input, Button } from './components';
+import PropsControls from './components/props-controls';
+// context
+import GlobalContext from './context/GlobalContext';
 // helpers
 import { consoleCss } from './shared/helpers';
 // styles
 import 'camp-css/scss/camp.scss';
-// mockup image used as an icon
-import icon from './shared/images/icon.svg';
 
 export default class UI extends React.Component {
     state = {
         button: {
-            icon: icon,
-            round: true,
-            primary: true,
+            icon: false,
+            round: false,
+            primary: false,
             size: 'normal',
             text: 'Button',
             noHover: false,
@@ -23,8 +24,8 @@ export default class UI extends React.Component {
             noAnimation: false,
         },
         input: {
-            size: null,
-            shadow: null,
+            size: 'normal',
+            shadow: 'outset',
             round: false,
             noAnimation: false,
             placeholder: 'placeholder',
@@ -63,23 +64,34 @@ export default class UI extends React.Component {
         }
     };
 
+    chanageProps = (name, prop, value) => {
+        this.setState(state => ({
+            [name]: {
+                ...state[name],
+                [prop]: value,
+            },
+        }));
+    };
+
     render() {
         const { button, input } = this.state;
+        //console.log(this.state);
 
         return (
-            <>
+            <GlobalContext.Provider value={{ button, input, chanageProps: this.chanageProps }}>
                 <h1>AC UI demo</h1>
                 <div style={{ padding: '40px' }}>
                     <Input
-                        size={button.size}
-                        round={button.round}
-                        shadow={button.shadow}
+                        size={input.size}
+                        round={input.round}
+                        shadow={input.shadow}
                         onBlur={this.handleInput}
                         onFocus={this.handleInput}
                         onChange={this.handleInput}
                         placeholder={input.placeholder}
-                        noAnimation={button.noAnimation}
+                        noAnimation={input.noAnimation}
                     />
+                    <PropsControls usedFor="input">INPUT</PropsControls>
                 </div>
                 <div style={{ padding: '40px' }}>
                     <Button
@@ -96,8 +108,9 @@ export default class UI extends React.Component {
                     >
                         {button.text}
                     </Button>
+                    <PropsControls usedFor="button">BUTTON</PropsControls>
                 </div>
-            </>
+            </GlobalContext.Provider>
         );
     }
 }
