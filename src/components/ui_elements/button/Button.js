@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import { getPairKeyValue } from '../../../shared/helpers';
 // styles
 import './button.styles.scss';
+// mockup image used as an icon
+import iconMock from '../../../shared/images/icon.svg';
 
 /*
     @props
@@ -24,7 +26,7 @@ import './button.styles.scss';
 export default class Button extends React.Component {
     static propTypes = {
         round: PropTypes.bool,
-        icon: PropTypes.string,
+        icon: PropTypes.bool,
         primary: PropTypes.bool,
         onClick: PropTypes.func,
         noHover: PropTypes.bool,
@@ -37,17 +39,17 @@ export default class Button extends React.Component {
     };
 
     static defaultProps = {
-        size: null,
-        icon: null,
-        shadow: null,
+        size: 'normal',
+        icon: false,
         round: false,
+        onClick: null,
         primary: false,
         noHover: false,
         secondary: false,
         noAnimation: false,
-        colorVariant: null,
-        onClick: null,
+        colorVariant: false,
         children: 'Please add button text',
+        shadow: PropTypes.oneOf(['inset', 'outset', 'both']),
     };
 
     cssClasses = () => {
@@ -80,7 +82,7 @@ export default class Button extends React.Component {
 
         return (
             <a href="/" className={this.cssClasses()} onClick={onClick}>
-                {icon && <img src={icon} className="icon" alt="icon" />}
+                {icon && <img src={iconMock} className="icon" alt="icon" />}
                 {children}
             </a>
         );

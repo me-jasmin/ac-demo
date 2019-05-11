@@ -29,8 +29,8 @@ export default class Input extends React.Component {
     };
 
     static defaultProps = {
-        size: null,
-        shadow: null,
+        size: 'normal',
+        shadow: false,
         onBlur: null,
         round: false,
         onFocus: null,
