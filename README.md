@@ -27,6 +27,12 @@ $ yarn build
 ```sh
 <Input placeholder="This placeholder text..." />
 ```
+```sh
+<Input size="large" shadow="both" placeholder="Your e-mail..." />
+```
+```sh
+<Input shadow="both" disabled placeholder="Your e-mail..." />
+```
 | prop | description |
 | ------ | ------ |
 | round: bool | display round corners |
@@ -36,10 +42,18 @@ $ yarn build
 | onBlur: func | function that gets triggered on the onBlur event |
 | onFocus: func | function that gets triggered on the onFocus event |
 | onChange: func | function that gets triggered on the onChange event  |
+| onChange: func | function that gets triggered on the onChange event  |
+| Native HTML Attributes | any input attribute can also be passed as a prop |
 
 # Button
 ```sh
 <Button>Button</Button>
+```
+```sh
+<Button primary icon shadow="outset">Submit</Button>
+```
+```sh
+<Button secondary icon disabled>Submit</Button>
 ```
 | prop | description |
 | ------ | ------ |
@@ -54,6 +68,7 @@ $ yarn build
 | noHover: bool | disable hover |
 | children: node | button text or node |
 | onClick: func | function that gets triggered on the onClick event |
+| Native HTML Attributes | any anchor attribute can also be passed as a prop |
 
 
 ## Logging
