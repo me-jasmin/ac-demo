@@ -1,7 +1,7 @@
 import React from 'react';
 // import custom components
 import { Input, Button } from './components';
-import PropsControls from './components/props-controls';
+import PropsControls from './components/props_controls';
 // context
 import GlobalContext from './context/GlobalContext';
 // helpers

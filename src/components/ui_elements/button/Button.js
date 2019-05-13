@@ -10,17 +10,17 @@ import iconMock from '../../../shared/images/icon.svg';
 
 /*
     @props
+    icon: bool
     round: bool
-    icon: string
     primary: bool
     onClick: func
     noHover: bool
     children: node
     secondary: bool
     noAnimation: bool
-    colorVariant: number
-    size: 'small' || 'normal' || 'large'
-    shadow: 'inset' || 'outset' || 'both'
+    size: string ('small' || 'normal' || 'large')
+    shadow: bool || string (false || 'inset' || 'outset' || 'both')
+    colorVariant: bool || number (false || 20 || 40 || 60 || 80 || 120)
 */
 
 export default class Button extends React.Component {
