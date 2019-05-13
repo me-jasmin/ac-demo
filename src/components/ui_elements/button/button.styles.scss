@@ -76,7 +76,7 @@
             background-color: #{$color-value};
             border: 1px solid #{$color-value};
 
-            &:hover {
+            &:not(.noHover):hover {
                 background-color: darken($color-value, 10%);
                 border: 1px solid darken($color-value, 10%);
             }

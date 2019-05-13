@@ -62,7 +62,7 @@ $secondary-colors: (
     background-color: $name;
     border: 1px solid $name;
 
-    &:hover {
+    &:not(.noHover):hover {
         background-color: darken($name, 10%);
         border: 1px solid darken($name, 10%);
     }
@@ -72,7 +72,7 @@ $secondary-colors: (
             background-color: #{$color-value};
             border: 1px solid #{$color-value};
 
-            &:hover {
+            &:not(.noHover):hover {
                 background-color: darken($color-value, 10%);
                 border: 1px solid darken($color-value, 10%);
             }
