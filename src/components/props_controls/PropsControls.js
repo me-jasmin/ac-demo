@@ -23,6 +23,7 @@ export default class PropsControls extends React.Component {
 
     // array of props and values for the button component used to generate the controls
     buttonPropsValues = {
+        disabled: [true, false],
         size: ['small', 'normal', 'large'],
         icon: [true, false],
         round: [true, false],
@@ -36,6 +37,7 @@ export default class PropsControls extends React.Component {
 
     // array of props and values for the input component used to generate the controls
     inputPropsValues = {
+        disabled: [true, false],
         size: ['small', 'normal', 'large'],
         round: [true, false],
         shadow: [false, 'inset', 'outset', 'both'],

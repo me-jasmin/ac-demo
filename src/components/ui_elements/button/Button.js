@@ -99,15 +99,14 @@ export default class Button extends React.Component {
         const { children, onClick, icon } = this.props;
 
         return (
-            <a
-                href="/"
+            <button
                 onClick={onClick}
                 {...getHTMLattrs(this.customProps, this.props)}
                 className={this.cssClasses()}
             >
                 {icon && <img src={iconMock} className="icon" alt="icon" />}
                 {children}
-            </a>
+            </button>
         );
     }
 }

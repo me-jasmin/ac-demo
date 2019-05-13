@@ -19,6 +19,7 @@ export default class UI extends React.Component {
             size: 'normal',
             text: 'Button',
             noHover: false,
+            disabled: false,
             secondary: false,
             colorVariant: false,
             noAnimation: false,
@@ -27,6 +28,7 @@ export default class UI extends React.Component {
             round: false,
             shadow: false,
             size: 'normal',
+            disabled: false,
             noAnimation: false,
             placeholder: 'placeholder',
         },
@@ -86,6 +88,7 @@ export default class UI extends React.Component {
                                 size={input.size}
                                 round={input.round}
                                 shadow={input.shadow}
+                                disabled={input.disabled}
                                 onBlur={this.handleInput}
                                 onFocus={this.handleInput}
                                 onChange={this.handleInput}
@@ -104,6 +107,7 @@ export default class UI extends React.Component {
                                 shadow={button.shadow}
                                 primary={button.primary}
                                 noHover={button.noHover}
+                                disabled={button.disabled}
                                 onClick={this.handleButton}
                                 secondary={button.secondary}
                                 noAnimation={button.noAnimation}
