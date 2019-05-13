@@ -30,8 +30,8 @@ $ yarn build
 | prop | description |
 | ------ | ------ |
 | round: bool | display round corners |
-| size: string 'small' || 'normal' || 'large' | size of the input field |
-| shadow: string 'inset' || 'outset' || 'both' | display shadow |
+| size: string | size of the input field // values: 'small', 'normal', 'large'|
+| shadow: bool or string | display shadow // values: false, 'inset', 'outset', 'both' |
 | noAnimation: bool | use CSS3 animations |
 | onBlur: func | function that gets triggered on the onBlur event |
 | onFocus: func | function that gets triggered on the onFocus event |
@@ -44,13 +44,13 @@ $ yarn build
 | prop | description |
 | ------ | ------ |
 | round: bool | display round corners |
-| size: string 'small' || 'normal' || 'large' | [plugins/googleanalytics/README.md][PlGa] |
-| shadow: string 'inset' || 'outset' || 'both' | [plugins/medium/README.md][PlMe] |
-| noAnimation: bool | [plugins/medium/README.md][PlMe] |
+| size: string | size of the input field // values: 'small', 'normal', 'large'|
+| shadow: bool or string | display shadow // values: false, 'inset', 'outset', 'both' |
+| noAnimation: bool | use CSS3 animations |
 | icon: bool | display an icon |
 | primary: bool | use primary button styles |
 | secondary: bool | use secondary button styles |
-| colorVariant: number | use a specific shade of color |
+| colorVariant: bool or number | use a specific shade of color // values: (false, 20, 40, 60, 80, 120) |
 | noHover: bool | disable hover |
 | children: node | button text or node |
 | onClick: func | function that gets triggered on the onClick event |
