@@ -3,71 +3,29 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 // helpers
 import { getPairKeyValue, getHTMLattrs } from '../../../shared/helpers';
+import { customProps } from '../../../shared/props';
 // styles
 import './button.styles.scss';
 // mockup image used as an icon
 import iconMock from '../../../shared/images/icon.svg';
 
-/*
-    @props
-    icon: bool
-    round: bool
-    primary: bool
-    onClick: func
-    noHover: bool
-    children: node
-    secondary: bool
-    noAnimation: bool
-    size: string ('small' || 'normal' || 'large')
-    shadow: bool || string (false || 'inset' || 'outset' || 'both')
-    colorVariant: bool || number (false || 20 || 40 || 60 || 80 || 120)
-*/
-
-export default class Button extends React.Component {
-    // prop types
-    static propTypes = {
-        round: PropTypes.bool,
-        icon: PropTypes.bool,
-        primary: PropTypes.bool,
-        onClick: PropTypes.func,
-        noHover: PropTypes.bool,
-        children: PropTypes.node,
-        secondary: PropTypes.bool,
-        noAnimation: PropTypes.bool,
-        size: PropTypes.oneOf(['small', 'normal', 'large']),
-        shadow: PropTypes.oneOf([false, 'inset', 'outset', 'both']),
-        colorVariant: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
-    };
-
-    // default prop types
-    static defaultProps = {
-        size: 'normal',
-        icon: false,
-        round: false,
-        onClick: null,
-        shadow: false,
-        primary: false,
-        noHover: false,
-        secondary: false,
-        noAnimation: false,
-        colorVariant: false,
-        children: 'Please add button text',
-    };
-
+const Button = ({
+    children,
+    onClick,
+    icon,
+    size,
+    round,
+    shadow,
+    noHover,
+    primary,
+    secondary,
+    noAnimation,
+    colorVariant,
+    ...rest
+}) => {
     // build out css classes
-    cssClasses = () => {
-        const {
-            size,
-            round,
-            shadow,
-            noHover,
-            primary,
-            secondary,
-            noAnimation,
-            colorVariant,
-        } = this.props;
-
-        return cx(
+    const cssClasses = () =>
+        cx(
             size,
             'button',
             shadow && `shadow ${shadow}`,
@@ -78,35 +36,41 @@ export default class Button extends React.Component {
             getPairKeyValue(noAnimation, 'noAnimation'),
             getPairKeyValue(colorVariant, `v-${colorVariant}`)
         );
-    };
 
-    // filter out native HTML attributes from custom props
-    // used with getHTMLattrs
-    customProps = [
-        'icon',
-        'size',
-        'round',
-        'shadow',
-        'onClick',
-        'primary',
-        'noHover',
-        'secondary',
-        'noAnimation',
-        'colorVariant',
-    ];
+    return (
+        <button onClick={onClick} className={cssClasses()} {...getHTMLattrs(customProps, rest)}>
+            {icon && <img src={iconMock} className="icon" alt="icon" />}
+            {children}
+        </button>
+    );
+};
 
-    render() {
-        const { children, onClick, icon } = this.props;
+export default Button;
 
-        return (
-            <button
-                onClick={onClick}
-                {...getHTMLattrs(this.customProps, this.props)}
-                className={this.cssClasses()}
-            >
-                {icon && <img src={iconMock} className="icon" alt="icon" />}
-                {children}
-            </button>
-        );
-    }
-}
+Button.propTypes = {
+    round: PropTypes.bool,
+    icon: PropTypes.bool,
+    primary: PropTypes.bool,
+    onClick: PropTypes.func,
+    noHover: PropTypes.bool,
+    children: PropTypes.node,
+    secondary: PropTypes.bool,
+    noAnimation: PropTypes.bool,
+    size: PropTypes.oneOf(['small', 'normal', 'large']),
+    shadow: PropTypes.oneOf([false, 'inset', 'outset', 'both']),
+    colorVariant: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
+};
+
+Button.defaultProps = {
+    size: 'normal',
+    icon: false,
+    round: false,
+    onClick: null,
+    shadow: false,
+    primary: false,
+    noHover: false,
+    secondary: false,
+    noAnimation: false,
+    colorVariant: false,
+    children: 'Please add button text',
+};
