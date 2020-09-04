@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // context
 import GlobalContext from '../../context/';
+// helpers
+import { elementProps } from '../../shared/props';
 // styles
 import './propsControls.styles.scss';
 
@@ -10,44 +12,11 @@ import './propsControls.styles.scss';
     usedFor: string
 */
 
-export default class PropsControls extends React.Component {
-    // prop types
-    static propTypes = {
-        usedFor: PropTypes.string,
-    };
-
-    // default prop types
-    static defaultProps = {
-        usedFor: 'button',
-    };
-
-    // array of props and values for the button component used to generate the controls
-    buttonPropsValues = {
-        disabled: [true, false],
-        size: ['small', 'normal', 'large'],
-        icon: [true, false],
-        round: [true, false],
-        shadow: [false, 'inset', 'outset', 'both'],
-        primary: [true, false],
-        secondary: [true, false],
-        colorVariant: [false, 20, 40, 60, 80, 120],
-        noHover: [true, false],
-        noAnimation: [true, false],
-    };
-
-    // array of props and values for the input component used to generate the controls
-    inputPropsValues = {
-        disabled: [true, false],
-        size: ['small', 'normal', 'large'],
-        round: [true, false],
-        shadow: [false, 'inset', 'outset', 'both'],
-        noAnimation: [true, false],
-    };
-
+const PropsControls = props => {
     // render function used to build out the controls for the component demo
-    renderPropsOptions = contextState => {
-        const { usedFor } = this.props;
-        const propsSource = this[`${usedFor}PropsValues`];
+    const renderPropsOptions = contextState => {
+        const { usedFor } = props;
+        const propsSource = elementProps[usedFor];
 
         return Object.keys(propsSource).map((prop, i) => {
             const propGroup = propsSource[prop].map((value, i) => {
@@ -87,24 +56,32 @@ export default class PropsControls extends React.Component {
                     className="prop-group g-col-12 s--g-col-6 m--g-col-4 p-4"
                     key={`${usedFor}-${i}`}
                 >
-                    <h3 className="prop-group-title">{`${prop}: ${
-                        contextState[usedFor][prop]
-                    }`}</h3>
+                    <h3 className="prop-group-title">
+                        {`${prop}: ${contextState[usedFor][prop]}`}
+                    </h3>
                     {propGroup}
                 </div>
             );
         });
     };
 
-    render() {
-        return (
-            <GlobalContext.Consumer>
-                {contextState => (
-                    <div className="props-container grid fw-700 g-cols gap-m body fs-4 mb-10 mt-8 clearfix">
-                        {this.renderPropsOptions(contextState)}
-                    </div>
-                )}
-            </GlobalContext.Consumer>
-        );
-    }
-}
+    return (
+        <GlobalContext.Consumer>
+            {contextState => (
+                <div className="props-container grid fw-700 g-cols gap-m body fs-4 mb-10 mt-8 clearfix">
+                    {renderPropsOptions(contextState)}
+                </div>
+            )}
+        </GlobalContext.Consumer>
+    );
+};
+
+export default PropsControls;
+
+PropsControls.propTypes = {
+    usedFor: PropTypes.string,
+};
+
+PropsControls.defaultProps = {
+    usedFor: 'button',
+};

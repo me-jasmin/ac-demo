@@ -5,7 +5,7 @@ import PropsControls from './components/props_controls';
 // context
 import GlobalContext from './context/GlobalContext';
 // helpers
-import { consoleCss } from './shared/helpers';
+import { handleButtonLogging, handleInputLogging } from './shared/eventLogging';
 // styles
 import 'camp-css/scss/camp.scss';
 
@@ -34,38 +34,6 @@ export default class UI extends React.Component {
         },
     };
 
-    // test function to handle button click
-    handleButton = event => {
-        // prevent default event
-        event.preventDefault();
-        // element
-        const el = event.target;
-        // logging :)
-        console.log('%c Button clicked! %s', consoleCss('#139879'), el);
-    };
-
-    // test function to handle input
-    handleInput = event => {
-        // prevent default event
-        event.preventDefault();
-        // element
-        const el = event.target;
-        // logging :)
-        switch (event.type) {
-            case 'focus':
-                console.log('%c Input focus! %s', consoleCss('#ff8730'), el);
-                break;
-            case 'blur':
-                console.log('%c Input blur! %s', consoleCss('#9159fc'), el);
-                break;
-            case 'change':
-                console.log(`%c Input change! value: ${el.value} %s`, consoleCss('#f3376b'), el);
-                break;
-            default:
-                break;
-        }
-    };
-
     chanageProps = (name, prop, value) => {
         this.setState(state => ({
             [name]: {
@@ -79,7 +47,9 @@ export default class UI extends React.Component {
         const { button, input } = this.state;
 
         return (
-            <GlobalContext.Provider value={{ button, input, chanageProps: this.chanageProps }}>
+            <GlobalContext.Provider
+                value={{ button, input, chanageProps: this.chanageProps }}
+            >
                 <div id="demo-container">
                     <h1>AC UI demo</h1>
                     <div className="demo-row clearfix">
@@ -89,11 +59,12 @@ export default class UI extends React.Component {
                                 round={input.round}
                                 shadow={input.shadow}
                                 disabled={input.disabled}
-                                onBlur={this.handleInput}
-                                onFocus={this.handleInput}
-                                onChange={this.handleInput}
+                                onBlur={handleInputLogging}
+                                onFocus={handleInputLogging}
+                                onChange={handleInputLogging}
                                 placeholder={input.placeholder}
                                 noAnimation={input.noAnimation}
+                                autoComplete="off"
                             />
                         </div>
                         <PropsControls usedFor="input" />
@@ -108,7 +79,7 @@ export default class UI extends React.Component {
                                 primary={button.primary}
                                 noHover={button.noHover}
                                 disabled={button.disabled}
-                                onClick={this.handleButton}
+                                onClick={handleButtonLogging}
                                 secondary={button.secondary}
                                 noAnimation={button.noAnimation}
                                 colorVariant={button.colorVariant}
