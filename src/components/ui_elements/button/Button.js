@@ -1,13 +1,13 @@
 import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-// helpers
-import { getPairKeyValue, getHTMLattrs } from '../../../shared/helpers';
-import { customProps } from '../../../shared/props';
-// styles
-import './button.styles.scss';
-// mockup image used as an icon
+
+import { getPairKeyValue, getHTMLattrs } from '../../../shared';
+import { customProps } from '../../../shared';
+
 import iconMock from '../../../shared/images/icon.svg';
+
+import './button.styles.scss';
 
 const Button = ({
     children,
@@ -23,7 +23,6 @@ const Button = ({
     colorVariant,
     ...rest
 }) => {
-    // build out css classes
     const cssClasses = () =>
         cx(
             size,

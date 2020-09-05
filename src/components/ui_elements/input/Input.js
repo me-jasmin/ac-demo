@@ -1,22 +1,20 @@
 import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-// helpers
-import { getPairKeyValue, getHTMLattrs } from '../../../shared/helpers';
-import { customProps } from '../../../shared/props';
-// styles
+
+import { getPairKeyValue, getHTMLattrs, customProps } from '../../../shared';
+
 import './input.styles.scss';
 
 const Input = ({ size, round, shadow, noAnimation, onChange, onFocus, onBlur, ...rest }) => {
-    const cssClasses = () => {
-        return cx(
+    const cssClasses = () =>
+        cx(
             size,
             'input',
             shadow && `shadow ${shadow}`,
             getPairKeyValue(round, 'round'),
             getPairKeyValue(noAnimation, 'noAnimation')
         );
-    };
 
     return (
         <input
@@ -31,7 +29,6 @@ const Input = ({ size, round, shadow, noAnimation, onChange, onFocus, onBlur, ..
 
 export default Input;
 
-// prop types
 Input.propTypes = {
     round: PropTypes.bool,
     onBlur: PropTypes.func,
@@ -42,7 +39,6 @@ Input.propTypes = {
     shadow: PropTypes.oneOf([false, 'inset', 'outset', 'both']),
 };
 
-// default prop types
 Input.defaultProps = {
     size: 'normal',
     shadow: false,

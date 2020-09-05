@@ -1,21 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// context
-import GlobalContext from '../../context/';
-// helpers
-import { elementProps } from '../../shared/props';
-// styles
+
+import GlobalContext from '../../context';
+import { elementProps } from '../../shared';
+
 import './propsControls.styles.scss';
 
-/*
-    @props
-    usedFor: string
-*/
-
-const PropsControls = props => {
-    // render function used to build out the controls for the component demo
+const PropsControls = ({ usedFor, ...rest }) => {
     const renderPropsOptions = contextState => {
-        const { usedFor } = props;
         const propsSource = elementProps[usedFor];
 
         return Object.keys(propsSource).map((prop, i) => {
@@ -52,13 +44,8 @@ const PropsControls = props => {
             });
 
             return (
-                <div
-                    className="prop-group g-col-12 s--g-col-6 m--g-col-4 p-4"
-                    key={`${usedFor}-${i}`}
-                >
-                    <h3 className="prop-group-title">
-                        {`${prop}: ${contextState[usedFor][prop]}`}
-                    </h3>
+                <div className="prop-group g-col-12 s--g-col-6 m--g-col-4 p-4" key={`${usedFor}-${i}`}>
+                    <h3 className="prop-group-title">{`${prop}: ${contextState[usedFor][prop]}`}</h3>
                     {propGroup}
                 </div>
             );
@@ -68,7 +55,7 @@ const PropsControls = props => {
     return (
         <GlobalContext.Consumer>
             {contextState => (
-                <div className="props-container grid fw-700 g-cols gap-m body fs-4 mb-10 mt-8 clearfix">
+                <div {...rest} className="props-container grid fw-700 g-cols gap-m body fs-4 mb-10 mt-8 clearfix">
                     {renderPropsOptions(contextState)}
                 </div>
             )}

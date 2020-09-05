@@ -25,11 +25,7 @@ export const handleInputLogging = event => {
             console.log('%c Input blur! %s', consoleCss('#9159fc'), element);
             break;
         case 'change':
-            console.log(
-                `%c Input change! value: ${element.value} %s`,
-                consoleCss('#f3376b'),
-                element
-            );
+            console.log(`%c Input change! value: ${element.value} %s`, consoleCss('#f3376b'), element);
             break;
         default:
             break;
