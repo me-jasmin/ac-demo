@@ -15,6 +15,14 @@ or
 $ yarn start
 ```
 
+## Run tests
+```sh
+Dev:
+$ npm run test
+or
+$ yarn test
+```
+
 ## Run production
 ```sh
 $ npm run build
